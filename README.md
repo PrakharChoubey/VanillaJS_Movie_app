@@ -1,5 +1,6 @@
 # VanillaJS_Movie_app
 https://vanillajs-movie-app.netlify.app/
+APIURL = 'https://api.themoviedb.org'
 
 Used html, pure CSS(without bootstrap or any other css framework), Vanilla Javascript(with AJAX).
 The webapp is responsive for every aspect-ratio.
