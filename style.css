@@ -32,23 +32,25 @@ header .PageType {
 }
 header .PageType button {
   cursor: pointer;
+  margin: 0px 1.5px;
   border-radius: 4px;
   border: solid 3px #15162c;
   /* color: rgb(122, 120, 120); */
   color: #181830;
-  opacity: 0;
+  opacity: 0.6;
   background: transparent;
   /* border: none; */
   outline: none;
   font-size: 1.3rem;
 }
 header .PageType:hover button {
-  opacity: 0.5;
+  opacity: 0.9;
 }
 header .PageType button.activeType {
   /* color: blue; */
   opacity: 1;
-  color: #0b0b1a;
+  color: #b23232;
+  background-color: slategrey;
 }
 .search {
   width: 250px;
