@@ -63,9 +63,7 @@ async function getMovies(BaseURL, type = 'grid', pageno = '1') {
     CurrentPageNo = parseInt(pageno);
     const resp = await fetch(BaseURL + pageno);
     const respData = await resp.json();
-    console.log(respData);
     pages = [respData.page, respData.total_pages, respData.results.length, respData.total_results];
-    console.log(pages);
     if (type === 'grid') {
         CurrentPageType = 'grid';
         showGridMovies(respData.results, pages);
@@ -78,7 +76,6 @@ async function getMovies(BaseURL, type = 'grid', pageno = '1') {
         respData.results.forEach(movie => {
             getMovie(movie.id);
         });
-        console.log('ho gaya');
         // clear footer
         footerDiv.innerHTML = '';
         const footerEl = document.createElement('footer');
@@ -90,7 +87,7 @@ async function getMovies(BaseURL, type = 'grid', pageno = '1') {
     }
     CurrentPageUrl = BaseURL;
     window.addEventListener('load', (event) => {
-        console.log('page is fully loaded');
+//         console.log('page is fully loaded');
     });
 }
 
@@ -102,7 +99,6 @@ async function getMovie(Movieid) {
     showListMovie(respData)
 
 }
-// getMovie("724989");
 function showGridMovies(movies, pages) {
     //clear main
     main.innerHTML = '';
@@ -113,7 +109,8 @@ function showGridMovies(movies, pages) {
         if (movie.poster_path) {
             CoverPath = imgPath + movie.poster_path;
         } else {
-            CoverPath = 'https://icon-library.net/images/no-picture-available-icon/no-picture-available-icon-4.jpg'
+//       CoverPath = 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-4.jpg'
+        CoverPath = 'https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181101027/112815900-no-image-available-icon-flat-vector.jpg'
         }
         movieEl.innerHTML = `
     <img
@@ -143,7 +140,8 @@ function showListMovie(movie) {
     if (movie.poster_path) {
         CoverPath = imgPath + movie.poster_path;
     } else {
-        CoverPath = 'https://icon-library.net/images/no-picture-available-icon/no-picture-available-icon-4.jpg'
+//         CoverPath = 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-4.jpg'
+        CoverPath = 'https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181101027/112815900-no-image-available-icon-flat-vector.jpg'
     }
     movieEl.innerHTML = `
         <img
@@ -196,13 +194,13 @@ function getClassByRate(rate) {
 chevll.addEventListener('click', () => {
     getMovies(CurrentPageUrl, CurrentPageType, 1);
     document.documentElement.scrollTop = 0;
-    console.log(CurrentPageNo);
+//     console.log(CurrentPageNo);
 
 })
 chevl.addEventListener('click', () => {
     if (1 < CurrentPageNo && CurrentPageNo <= pages[1]) {
         getMovies(CurrentPageUrl, CurrentPageType, CurrentPageNo - 1)
-        console.log(CurrentPageNo);
+//         console.log(CurrentPageNo);
         document.documentElement.scrollTop = 0;
     } else {
         document.getElementById('CurrentPage').classList.add('red');
@@ -215,7 +213,6 @@ chevr.addEventListener('click', () => {
     // console.log(CurrentPageUrl.slice(0, -1));
     if (CurrentPageNo < pages[1]) {
         getMovies(CurrentPageUrl, CurrentPageType, CurrentPageNo + 1)
-        console.log(CurrentPageNo);
         document.documentElement.scrollTop = 0;
     } else {
         document.getElementById('CurrentPage').classList.add('red');
@@ -224,7 +221,5 @@ chevr.addEventListener('click', () => {
 chevrr.addEventListener('click', () => {
     getMovies(CurrentPageUrl, CurrentPageType, pages[1]);
     document.documentElement.scrollTop = 0;
-    console.log(CurrentPageNo);
-
 })
 
